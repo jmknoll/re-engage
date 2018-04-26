@@ -9,7 +9,9 @@ import { AsyncStorage } from 'react-native';
 const initialState = {
   user: {
 
-  }
+  },
+  signedIn: false,
+  zipCode: '',
 };
 
 export default function reducer(state=initialState, action) {
