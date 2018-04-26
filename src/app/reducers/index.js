@@ -1,8 +1,10 @@
 import {
   API_REQUEST_SUCCESS,
   API_REQUEST_FAILURE,
-  API_REQUEST_NETWORK_ERROR
-} from '../action/actionTypes';
+  API_REQUEST_NETWORK_ERROR,
+  GET_POLITICIANS_SUCCESS,
+  GET_POLITICIANS_FAILURE
+} from '../actions/actionTypes';
 
 import { AsyncStorage } from 'react-native';
 
@@ -16,7 +18,7 @@ const initialState = {
 
 export default function reducer(state=initialState, action) {
   switch(action.type) {
-    case GET_POLITICIANS:
+    case GET_POLITICIANS_SUCCESS:
       let politicians = action.data;
       return {
         ...state,

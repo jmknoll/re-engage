@@ -1,9 +1,4 @@
-import { YellowBox, AppRegistry } from 'react-native';
-
-YellowBox.ignoreWarnings([
-  'Warning: componentWillMount is deprecated',
-  'Warning: componentWillReceiveProps is deprecated',
-]);
+import { AppRegistry } from 'react-native';
 
 import ReEngage from './src/ReEngage';
 

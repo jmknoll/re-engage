@@ -10,7 +10,7 @@ import { AsyncStorage } from 'react-native';
 
 const store = configureStore();
 
-registerScreens(store, provider);
+registerScreens(store, Provider);
 
 const navigatorStyle = {
   statusBarColor: '#831d19',
