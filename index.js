@@ -1,4 +1,10 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import { YellowBox, AppRegistry } from 'react-native';
 
-AppRegistry.registerComponent('ReEngage', () => App);
+YellowBox.ignoreWarnings([
+  'Warning: componentWillMount is deprecated',
+  'Warning: componentWillReceiveProps is deprecated',
+]);
+
+import ReEngage from './src/ReEngage';
+
+AppRegistry.registerComponent('ReEngage', () => ReEngage);
