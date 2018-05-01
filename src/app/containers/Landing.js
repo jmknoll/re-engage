@@ -5,7 +5,7 @@ import * as actions from '../actions';
 
 function mapStateToProps(state) {
   return {
-    signedIn: state.app.signIn
+    signedIn: state.app.signedIn,
   }
 }
 

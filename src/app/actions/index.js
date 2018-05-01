@@ -6,10 +6,42 @@ import {
 
 import Config from 'react-native-config'
 
-const key = Config.PROPUBLICA_API_KEY;
-const BASE_URL = Config.PROPUBLICA_API_URL;
+const PP_KEY = Config.PROPUBLICA_API_KEY;
+const PP_BASE_URL = Config.PROPUBLICA_API_URL;
 
+const GOOGLE_KEY = Config.GOOGLE_CIVIC_INFORMATION_API_KEY;
+const GOOGLE_BASE_URL = Config.GOOGLE_CIVIC_INFORMATION_API_URL;
 
+function handleErrors(res) {
+  if (!res.ok) {
+    console.log(res)
+    throw Error(res.statusText)
+  }
+  return res;
+}
+
+export function getPoliticians(address) {
+  return dispatch =>
+    fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=${GOOGLE_KEY}`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(handleErrors)
+    .then((res) => {
+      return res.json()
+    })
+    .then((body) => {
+      console.log(body)
+    })
+    .catch((ex) => {
+      console.log(ex);
+    })
+}
+
+/*
 export function getPoliticians(zipCode) {
   return dispatch =>
     fetch(`${BASE_URL}/115/senate/members.json`, {
@@ -20,10 +52,26 @@ export function getPoliticians(zipCode) {
         'X-API-Key': key
       }
     })
+    .then(handleErrors)
     .then((res) => {
       return res.json()
     })
     .then((body) => {
-      console.log(body)      
+      return dispatch(getPoliticiansSuccess(body))
+    })
+    .catch((ex) => {
+      console.log(ex);
     })
 }
+
+
+
+function getPoliticiansSuccess(body) {
+  return {
+    type: GET_POLITICIANS_SUCCESS,
+    data: body.results
+  }
+}
+
+*/
+

@@ -4,7 +4,7 @@ import Home from '../components/Home';
 
 function mapStateToProps(state) {
   return {
-    
+    politicians: state.app.politicians
   }
 }
 

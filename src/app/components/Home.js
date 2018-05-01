@@ -31,6 +31,15 @@ export default class Onboarding extends Component {
     this.props.getPoliticians(this.state.zipCode)
   }
 
+  _renderPoliticians() {
+    return
+    return this.props.politicians.map((politician) => {
+      return(
+        <Text>politician</Text>
+      ) 
+    })
+  }
+
   render() {
     return(
       <View style={styles.container}>
@@ -40,6 +49,7 @@ export default class Onboarding extends Component {
           onChangeText={ (zipCode) => this.setState({zipCode}) }
         />
         <Button onPress={this._getPoliticians}>Get Politicians</Button>
+        {this._renderPoliticians()}
       </View>
     )
   }
