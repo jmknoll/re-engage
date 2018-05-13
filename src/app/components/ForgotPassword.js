@@ -5,9 +5,7 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Alert,
-  KeyboardAvoidingView,
-  TouchableOpacity
+  KeyboardAvoidingView
 } from 'react-native';
 
 import {
@@ -20,54 +18,64 @@ import {
 } from '../../shared/constants';
 
 import Button from '../../shared/components/Button';
+import Alert from '../../shared/components/Alert';
 
-export default class SignIn extends Component {
+export default class ForgotPassword extends Component {
+
+  static navigatorButtons = {
+    leftButtons: [
+      {
+        icon: require('../../assets/CloseX.png'),
+        id: 'close'
+      }
+    ],
+  };
 
   constructor(props) {
     super(props)
 
     this.state = {
       email: '',
-      password: ''
     }
 
-    this.signIn = this.signIn.bind(this);
-    this.showForgotPasswordScreen = this.showForgotPasswordScreen.bind(this);
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    this.resetPassword = this.resetPassword.bind(this);
+    this.failureCallback = this.failureCallback.bind(this);
   }
 
-  signIn() {
-    return
+  onNavigatorEvent(event) {
+    if (event.type == 'NavBarButtonPress') { 
+      if (event.id == 'close') {
+        this.props.resetMessageState();
+        this.props.navigator.dismissModal({
+          animationType: 'slide-down' // 'none' / 'slide-down' , dismiss animation for the modal (optional, default 'slide-down')
+        });
+      }
+    }
+  }
+
+  resetPassword() {
     
-    let user = {
-      email: this.state.email,
-      password: this.state.password,
-      logged_in: true
+    let email = {
+      email: this.state.email
     }
 
-    this.props.signIn(
-      user, 
-      this.props.navigator, 
-      this.props.deviceId,
+    this.props.resetPassword(
+      email, 
       this.failureCallback
     )
   }
 
 
-  failureCallback() {
-    Alert.alert('Failure signing in')
-  }
-
-  showForgotPasswordScreen() {
-    this.props.navigator.showModal({
-      screen: 'reEngage.ForgotPasswordScreen',
-      title : 'Reset Password',
-    })
+  failureCallback(msg) {
+    Alert.alert(msg)
   }
 
 
   render() {
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={64}>
+        <Text style={{textAlign: 'center'}}>Please enter your email to reset your password</Text>
         <View style={styles.card}>
           <Text style={styles.label}>Email</Text>
           <TextInput 
@@ -76,18 +84,18 @@ export default class SignIn extends Component {
             autoCorrect={false}
             autoCapitalize='none'
           />
-          <Text style={styles.label}>Password</Text>
-          <TextInput 
-            style={styles.input}
-            onChangeText={ (password) => this.setState({password}) }
-            autoCorrect={false}
-            secureTextEntry={true}
-          />
+          {this.props.resetPasswordFailure ? 
+            (
+              <Alert type='error' message={this.props.errorMessage}></Alert>
+            )
+           : null}
+          {this.props.resetPasswordSuccess ? 
+            (
+              <Alert type='success' message={'We have sent you an email containing instructions to reset your password'}></Alert>
+            )
+           : null }
         </View>
-        <TouchableOpacity onPress={this.showForgotPasswordScreen}>
-          <Text style={styles.link}>Forgot your password?</Text>
-        </TouchableOpacity>
-        <Button style={{marginTop: 'auto', backgroundColor: LIGHT_BLUE}} textStyle={{color: 'white'}} onPress={this.signIn}>Sign In</Button>
+        <Button style={styles.button} textStyle={styles.textStyle} onPress={this.resetPassword}>Reset Password</Button>
       </KeyboardAvoidingView>
     )
   }
@@ -128,6 +136,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     marginBottom: 15
   },
+  button: {
+    backgroundColor: LIGHT_BLUE,
+    marginBottom: 25,
+    marginTop: 'auto'
+  },
   link: {
     color: DARK_GREY,
     textAlign: 'center',
@@ -136,4 +149,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontWeight: 'bold'
   },
+  textStyle: {
+    color: 'white'
+  }
 })

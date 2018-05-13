@@ -13,6 +13,8 @@ import {
 
 import Button from '../../shared/components/Button';
 
+import OnboardingSwiper from './OnboardingSwiper'
+
 export default class Onboarding extends Component {
 
   constructor(props) {
@@ -45,8 +47,9 @@ export default class Onboarding extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Button onPress={this._goToRegistration}>Create Account</Button>
-        <Button onPress={this._continueWithoutRegistration}>Continue Without Account</Button>
+        <OnboardingSwiper />
+        <Button style={{backgroundColor: LIGHT_BLUE}} textStyle={{color: 'white'}} onPress={this._goToRegistration}>Create Account</Button>
+        <Button style={{backgroundColor: LIGHT_BLUE}} textStyle={{color: 'white'}} onPress={this._continueWithoutRegistration}>Continue Without Account</Button>
       </View>
     )
   }
