@@ -2,7 +2,10 @@ import {
   GET_POLITICIANS,
   GET_POLITICIANS_SUCCESS,
   GET_POLITICIANS_FAILURE,
-  RESET_MESSAGE_STATE
+  RESET_MESSAGE_STATE,
+  SEND_ERROR_MESSAGE,
+  CREATE_ACCOUNT_SUCCESS,
+  CREATE_ACCOUNT_FAILURE,
 } from './actionTypes';
 
 import Config from 'react-native-config'
@@ -44,6 +47,18 @@ export function getPoliticians(address) {
 export function resetMessageState() {
   return {
     type: RESET_MESSAGE_STATE
+  }
+}
+
+export function sendErrorMessage(message) {
+  return {
+    type: SEND_ERROR_MESSAGE,
+    data: message
+  }
+}
+
+export function createAccount(user, navigator) {
+  return {
   }
 }
 

@@ -17,6 +17,7 @@ import {
 
 import Button from '../../shared/components/Button';
 import Card from '../../shared/components/Card';
+import Alert from '../../shared/components/Alert';
 
 export default class Onboarding extends Component {
 
@@ -27,6 +28,17 @@ export default class Onboarding extends Component {
   }
 
   _registerAccount() {
+
+    if (this.state.password != this.state.passwordConfirm) {
+      this.props.sendErrorMessage('Password and password confirmation do not match');
+      return
+    }
+    let user = {
+      email: this.state.email,
+      password: this.state.password,
+    }
+    this.props.createAccount(user);
+
     this.props.navigator.push({
       screen: 'reEngage.HomeScreen',
       title: 'Your Politicians',
@@ -69,6 +81,7 @@ export default class Onboarding extends Component {
             autoCorrect={false}
             autoCapitalize='none'
           />
+          {this.props.errorMessage ?  <Alert type='error' message={this.props.errorMessage} /> : null}
         </Card>
         <Button style={{backgroundColor: LIGHT_BLUE, marginTop: 'auto'}} textStyle={{color: 'white'}} onPress={this._registerAccount}>Register</Button>
       </KeyboardAvoidingView>

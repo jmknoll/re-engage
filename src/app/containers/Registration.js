@@ -4,7 +4,7 @@ import Registration from '../components/Registration';
 
 function mapStateToProps(state) {
   return {
-
+    errorMessage: state.app.errorMessage
   }
 }
 
