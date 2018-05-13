@@ -39,10 +39,10 @@ export default class Landing extends Component {
     this.props.navigator.push({
       screen: 'reEngage.SignInScreen',
       backButtonTitle: '',
+      title: 'Sign In',
       navigatorStyle: {
-        navBarBackgroundColor: BODY_BACKGROUND,
+        navBarBackgroundColor: 'white',
         navBarLeftButtonColor: LIGHT_BLUE,
-        navBarNoBorder: true,
       }
     })
   }

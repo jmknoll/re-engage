@@ -95,7 +95,7 @@ export default class ForgotPassword extends Component {
             )
            : null }
         </View>
-        <Button style={styles.button} textStyle={styles.textStyle} onPress={this.resetPassword}>Reset Password</Button>
+        <Button style={{backgroundColor: LIGHT_BLUE, marginTop: 'auto'}} textStyle={{color: 'white'}} onPress={this.resetPassword}>Reset Password</Button>
       </KeyboardAvoidingView>
     )
   }
@@ -135,21 +135,5 @@ const styles = StyleSheet.create({
     color: DARK_GREY,
     paddingLeft: 10,
     marginBottom: 15
-  },
-  button: {
-    backgroundColor: LIGHT_BLUE,
-    marginBottom: 25,
-    marginTop: 'auto'
-  },
-  link: {
-    color: DARK_GREY,
-    textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 15,
-    textDecorationLine: 'underline',
-    fontWeight: 'bold'
-  },
-  textStyle: {
-    color: 'white'
   }
 })

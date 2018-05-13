@@ -1,7 +1,8 @@
 import {
   GET_POLITICIANS,
   GET_POLITICIANS_SUCCESS,
-  GET_POLITICIANS_FAILURE
+  GET_POLITICIANS_FAILURE,
+  RESET_MESSAGE_STATE
 } from './actionTypes';
 
 import Config from 'react-native-config'
@@ -14,7 +15,6 @@ const GOOGLE_BASE_URL = Config.GOOGLE_CIVIC_INFORMATION_API_URL;
 
 function handleErrors(res) {
   if (!res.ok) {
-    console.log(res)
     throw Error(res.statusText)
   }
   return res;
@@ -39,6 +39,12 @@ export function getPoliticians(address) {
     .catch((ex) => {
       console.log(ex);
     })
+}
+
+export function resetMessageState() {
+  return {
+    type: RESET_MESSAGE_STATE
+  }
 }
 
 /*
