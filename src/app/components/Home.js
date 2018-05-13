@@ -15,7 +15,20 @@ import {
 
 import Button from '../../shared/components/Button';
 
-export default class Onboarding extends Component {
+export default class Home extends Component {
+
+  static navigatorStyles = {
+    navBarNoBorder: false,
+  };
+
+  static navigatorButtons = {
+    rightButtons: [
+      {
+        icon: require('../../assets/Profile.png'),
+        id: 'profile'
+      }
+    ]
+  };
 
   constructor(props) {
     super(props)
@@ -24,7 +37,26 @@ export default class Onboarding extends Component {
       zipCode: ''
     }
 
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+
     this._getPoliticians = this._getPoliticians.bind(this);
+  }
+
+  onNavigatorEvent(event) {
+    if (event.type == 'NavBarButtonPress') { 
+      if (event.id == 'profile') {
+        this.props.navigator.push({
+          screen: 'reEngage.ProfileScreen',
+          title: 'Profile',
+          backButtonTitle: '',
+          navBarNoBorder: false,
+          navigatorStyles: {
+            navBarBackgroundColor: 'white'
+          }
+
+        })
+      }
+    }
   }
 
   _getPoliticians() {

@@ -6,6 +6,7 @@ import SignInScreen from './app/containers/SignIn';
 import ForgotPasswordScreen from './app/containers/ForgotPassword';
 import RegistrationScreen from './app/containers/Registration';
 import HomeScreen from './app/containers/Home';
+import ProfileScreen from './app/containers/Profile';
 
 export function registerScreens(store, provider) {
   Navigation.registerComponent('reEngage.LandingScreen', () => LandingScreen, store, provider);
@@ -14,5 +15,5 @@ export function registerScreens(store, provider) {
   Navigation.registerComponent('reEngage.ForgotPasswordScreen', () => ForgotPasswordScreen, store, provider);
   Navigation.registerComponent('reEngage.RegistrationScreen', () => RegistrationScreen, store, provider);
   Navigation.registerComponent('reEngage.HomeScreen', () => HomeScreen, store, provider);
-
+  Navigation.registerComponent('reEngage.ProfileScreen', () => ProfileScreen, store, provider);
 }

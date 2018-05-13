@@ -146,6 +146,7 @@ export default class Onboarding extends Component {
       }
     };
 
+
     ImagePicker.showImagePicker(options, (response) => {
 
       if (response.didCancel) {
@@ -159,7 +160,6 @@ export default class Onboarding extends Component {
       }
       else {
         let source = { uri: response.uri };
-
 
         this.setSourceToState(source, response)
       }
@@ -176,7 +176,7 @@ export default class Onboarding extends Component {
               this.state.avatarSource ? 
               ( <Image style={styles.photoUpload} source={this.state.avatarSource} />
               ) : (
-                  <TouchableOpacity style={styles.photoIcon} onPress={this.takePhoto}> 
+                  <TouchableOpacity style={styles.photoIcon} onPress={this._takePhoto}> 
                     <Image source={require('../../assets/picture.png')} />
                     <Text style={{fontWeight: 'bold', marginTop: 10}}>Add Photo</Text>
                   </TouchableOpacity>
