@@ -13,10 +13,8 @@ import {
 import {
   LIGHT_BLUE,
   BODY_BACKGROUND,
-  WHITE,
   DARK_GREY,
   LIGHT_GREY,
-  MEDIUM_GREY
 } from '../../shared/constants';
 
 import Button from '../../shared/components/Button';

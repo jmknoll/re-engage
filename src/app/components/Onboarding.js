@@ -28,10 +28,11 @@ export default class Onboarding extends Component {
     this.props.navigator.push({
       screen: 'reEngage.RegistrationScreen',
       backButtonTitle: '',
+      title: 'Create Account',
       navigatorStyle: {
-        navBarBackgroundColor: BODY_BACKGROUND,
+        navBarBackgroundColor: 'white',
         navBarLeftButtonColor: LIGHT_BLUE,
-        navBarNoBorder: true,
+        navBarNoBorder: false
       }
     })
   }

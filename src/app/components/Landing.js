@@ -43,6 +43,7 @@ export default class Landing extends Component {
       navigatorStyle: {
         navBarBackgroundColor: 'white',
         navBarLeftButtonColor: LIGHT_BLUE,
+        navBarNoBorder: false
       }
     })
   }
