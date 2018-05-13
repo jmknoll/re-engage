@@ -19,6 +19,7 @@ import {
 
 import Button from '../../shared/components/Button';
 import Alert from '../../shared/components/Alert';
+import Card from '../../shared/components/Card';
 
 export default class ForgotPassword extends Component {
 
@@ -76,7 +77,7 @@ export default class ForgotPassword extends Component {
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={64}>
         <Text style={{textAlign: 'center'}}>Please enter your email to reset your password</Text>
-        <View style={styles.card}>
+        <Card>
           <Text style={styles.label}>Email</Text>
           <TextInput 
             style={styles.input}
@@ -94,7 +95,7 @@ export default class ForgotPassword extends Component {
               <Alert type='success' message={'We have sent you an email containing instructions to reset your password'}></Alert>
             )
            : null }
-        </View>
+        </Card>
         <Button style={{backgroundColor: LIGHT_BLUE, marginTop: 'auto'}} textStyle={{color: 'white'}} onPress={this.resetPassword}>Reset Password</Button>
       </KeyboardAvoidingView>
     )
@@ -108,19 +109,6 @@ const styles = StyleSheet.create({
     backgroundColor: BODY_BACKGROUND,
     paddingBottom: 40
 
-  },
-  card: {
-    backgroundColor: WHITE,
-    marginTop: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    shadowColor: MEDIUM_GREY,
-    shadowRadius: 1,
-    shadowOffset: {height: 1, width: 1},
-    shadowOpacity: 1,
-    borderRadius: 4,
   },
   label: {
     color: LIGHT_GREY,

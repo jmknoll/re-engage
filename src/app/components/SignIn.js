@@ -20,6 +20,7 @@ import {
 } from '../../shared/constants';
 
 import Button from '../../shared/components/Button';
+import Card from '../../shared/components/Card';
 
 export default class SignIn extends Component {
 
@@ -68,7 +69,7 @@ export default class SignIn extends Component {
   render() {
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={64}>
-        <View style={styles.card}>
+        <Card>
           <Text style={styles.label}>Email</Text>
           <TextInput 
             style={styles.input}
@@ -83,7 +84,7 @@ export default class SignIn extends Component {
             autoCorrect={false}
             secureTextEntry={true}
           />
-        </View>
+        </Card>
         <TouchableOpacity onPress={this.showForgotPasswordScreen}>
           <Text style={styles.link}>Forgot your password?</Text>
         </TouchableOpacity>
@@ -100,19 +101,6 @@ const styles = StyleSheet.create({
     backgroundColor: BODY_BACKGROUND,
     paddingBottom: 40
 
-  },
-  card: {
-    backgroundColor: WHITE,
-    marginTop: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    shadowColor: MEDIUM_GREY,
-    shadowRadius: 1,
-    shadowOffset: {height: 1, width: 1},
-    shadowOpacity: 1,
-    borderRadius: 4,
   },
   label: {
     color: LIGHT_GREY,
