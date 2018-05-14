@@ -18,6 +18,8 @@ import {
   DARK_GREY
 } from '../../shared/constants';
 
+import Config from 'react-native-config';
+
 import { RNS3 } from 'react-native-aws3';
 var ImagePicker = require('react-native-image-picker');
 
@@ -101,12 +103,15 @@ export default class Onboarding extends Component {
       type: "image/jpg"
     }
 
+
+
+    // set up these options
     const options = {
       keyPrefix: "avatars/",
       bucket: "dvmhealth-media",
       region: "us-east-1",
-      accessKey: "AKIAIEPU5WGG7BAF5L3Q",
-      secretKey: "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",
+      accessKey: Config.AWS_ACCESS_KEY,
+      secretKey: Config.AWS_SECRET_KEY,
       successActionStatus: 201
     }
 
