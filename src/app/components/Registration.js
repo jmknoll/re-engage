@@ -20,6 +20,7 @@ import {
 
 import Config from 'react-native-config';
 
+
 import { RNS3 } from 'react-native-aws3';
 var ImagePicker = require('react-native-image-picker');
 
@@ -108,7 +109,7 @@ export default class Onboarding extends Component {
     // set up these options
     const options = {
       keyPrefix: "avatars/",
-      bucket: "dvmhealth-media",
+      bucket: "reengage-media",
       region: "us-east-1",
       accessKey: Config.AWS_ACCESS_KEY,
       secretKey: Config.AWS_SECRET_KEY,

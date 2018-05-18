@@ -8,7 +8,8 @@ import {
   CREATE_ACCOUNT_FAILURE,
 } from './actionTypes';
 
-import Config from 'react-native-config'
+import Config from 'react-native-config';
+
 
 const PP_KEY = Config.PROPUBLICA_API_KEY;
 const PP_BASE_URL = Config.PROPUBLICA_API_URL;
