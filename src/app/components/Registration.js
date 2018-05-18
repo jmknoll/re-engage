@@ -78,7 +78,7 @@ export default class Onboarding extends Component {
       })
     }
 
-    this.uploadPhotoToS3(source, response, petArrayIndex);
+    this._uploadPhotoToS3(source, response, petArrayIndex);
   }
 
 
@@ -118,23 +118,17 @@ export default class Onboarding extends Component {
 
 
     RNS3.put(file, options).then(response => {
-      if (response.status !== 201)
+      if (response.status != 201) {
         this.props.sendErrorMessage('Error uploading photo')
         throw new Error("Failed to upload image to S3");
+      }
       RNS3.put(file, options)
       .progress((e) => {
         if ((e.loaded / e.total) === 1) {
-          if (petArrayIndex || petArrayIndex === 0) {
-            let pets = this.state.pets;
-            let pet = pets[petArrayIndex];
-            pet['photo_url'] = response.body.postResponse.key;
-            this.setState({pets})
-          } else {
-            this.setState({
-              photoUrl: response.body.postResponse.key,
-              showActivityIndicator: false,
-            })
-          }
+          this.setState({
+            photoUrl: response.body.postResponse.key,
+            showActivityIndicator: false,
+          })
         }
       })
     });
@@ -167,7 +161,7 @@ export default class Onboarding extends Component {
       else {
         let source = { uri: response.uri };
 
-        this.setSourceToState(source, response)
+        this._setSourceToState(source, response)
       }
     });
   }
