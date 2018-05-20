@@ -51,11 +51,14 @@ export default class Onboarding extends Component {
   }
 
   _registerAccount() {
+    this.props.resetMessageState();
+    /*
     if (this.state.password != this.state.passwordConfirm) {
       this.props.sendErrorMessage('Password and password confirmation do not match')
       ;
       return
     }
+    */
     let data = {
       user: {
         email: this.state.email,

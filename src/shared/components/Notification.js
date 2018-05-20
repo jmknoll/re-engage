@@ -8,9 +8,28 @@ import {
 
 export default function Notification(props) {
 
+  if (props.message.constructor === Array) {
+    message = props.message.map((msg) => {
+      return
+    })
+  }
+  else if (props.message.constructor === String) {
+    message = props.message
+  }
+
   return(
     <View style={[styles.container, styles[`${props.type}`]]}> 
-      <Text style={styles[`${props.type}Text`]}>{props.message}</Text>
+      {props.message.constructor === Array ? 
+        (  
+          <View>
+            {props.message.map((msg) => {
+              return(
+                <Text style={styles[`${props.type}Text`]}>{`\u2022 ${msg}`}</Text>
+              )
+            })}
+          </View>
+        ) : (<Text style={styles[`${props.type}Text`]}>{props.message}</Text>)
+      }
     </View>
   )
 }
