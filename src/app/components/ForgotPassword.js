@@ -18,7 +18,7 @@ import {
 } from '../../shared/constants';
 
 import Button from '../../shared/components/Button';
-import Alert from '../../shared/components/Alert';
+import Notification from '../../shared/components/Notification';
 import Card from '../../shared/components/Card';
 
 export default class ForgotPassword extends Component {

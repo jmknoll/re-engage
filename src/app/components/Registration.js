@@ -8,7 +8,8 @@ import {
   StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
-  Image
+  Image,
+  Alert
 } from 'react-native';
 
 import {
@@ -26,7 +27,7 @@ var ImagePicker = require('react-native-image-picker');
 
 import Button from '../../shared/components/Button';
 import Card from '../../shared/components/Card';
-import Alert from '../../shared/components/Alert';
+import Notification from '../../shared/components/Notification';
 
 export default class Onboarding extends Component {
 
@@ -36,7 +37,11 @@ export default class Onboarding extends Component {
     this._registerAccount = this._registerAccount.bind(this);
 
     this.state = {
-      showActivityIndicator: false
+      showActivityIndicator: false,
+      email: '',
+      password: '',
+      passwordConfirm: '',
+      photoUrl: ''
     }
 
     //photo functions binding
@@ -46,37 +51,30 @@ export default class Onboarding extends Component {
   }
 
   _registerAccount() {
-
     if (this.state.password != this.state.passwordConfirm) {
-      this.props.sendErrorMessage('Password and password confirmation do not match');
+      this.props.sendErrorMessage('Password and password confirmation do not match')
+      ;
       return
     }
-    let user = {
-      email: this.state.email,
-      password: this.state.password,
+    let data = {
+      user: {
+        email: this.state.email,
+        password: this.state.password,
+        password_confirmation: this.state.passwordConfirm,
+        photo_url: this.state.photoUrl
+      }
     }
-    this.props.createAccount(user);
-
-    this.props.navigator.push({
-      screen: 'reEngage.HomeScreen',
-      title: 'Your Politicians',
-      backButtonHidden: true,
-    })
+    this.props.createAccount(data, this.props.navigator)
+    //.catch((ex) => {Alert.alert('network connectivity.')});
   }
 
   // photo functions - should be refactored
   _setSourceToState(source, response, petArrayIndex) {
-    if (petArrayIndex || petArrayIndex === 0) {
-      let pets = this.state.pets;
-      let pet = pets[petArrayIndex];
-      pet['avatarSource'] = source;
-      this.setState({pets})
-    } else {
-      this.setState({
-        avatarSource: source,
-        showActivityIndicator: true,
-      })
-    }
+    
+    this.setState({
+      avatarSource: source,
+      showActivityIndicator: true,
+    })
 
     this._uploadPhotoToS3(source, response, petArrayIndex);
   }
@@ -104,8 +102,6 @@ export default class Onboarding extends Component {
       type: "image/jpg"
     }
 
-
-
     // set up these options
     const options = {
       keyPrefix: "avatars/",
@@ -115,7 +111,6 @@ export default class Onboarding extends Component {
       secretKey: Config.AWS_SECRET_KEY,
       successActionStatus: 201
     }
-
 
     RNS3.put(file, options).then(response => {
       if (response.status != 201) {
@@ -132,9 +127,7 @@ export default class Onboarding extends Component {
         }
       })
     });
-
   }
-
 
   _takePhoto() {
 
@@ -214,9 +207,16 @@ export default class Onboarding extends Component {
             autoCorrect={false}
             autoCapitalize='none'
           />
-          {this.props.errorMessage ?  <Alert type='error' message={this.props.errorMessage} /> : null}
+          {this.props.errorMessage ?  <Notification type='error' message={this.props.errorMessage} /> : null}
         </Card>
-        <Button style={{backgroundColor: LIGHT_BLUE, marginTop: 'auto'}} textStyle={{color: 'white'}} onPress={this._registerAccount}>Register</Button>
+        <Button 
+          style={{backgroundColor: LIGHT_BLUE, marginTop: 'auto'}} 
+          textStyle={{color: 'white'}} 
+          onPress={this._registerAccount}
+          //disabled={!this.state.email || !this.state.email.photoUrl || !this.state.password || !this.state.passwordConfirm} 
+          >
+        Register
+        </Button>
       </KeyboardAvoidingView>
     )
   }

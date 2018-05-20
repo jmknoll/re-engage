@@ -6,7 +6,8 @@ import {
   StyleSheet
 } from 'react-native';
 
-export default function Alert(props) {
+export default function Notification(props) {
+
   return(
     <View style={[styles.container, styles[`${props.type}`]]}> 
       <Text style={styles[`${props.type}Text`]}>{props.message}</Text>

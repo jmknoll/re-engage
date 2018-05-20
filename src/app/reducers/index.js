@@ -7,7 +7,9 @@ import {
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_FAILURE,
   RESET_MESSAGE_STATE,
-  SEND_ERROR_MESSAGE
+  SEND_ERROR_MESSAGE,
+  CREATE_ACCOUNT_SUCCESS,
+  CREATE_ACCOUNT_FAILURE
 } from '../actions/actionTypes';
 
 import { AsyncStorage } from 'react-native';
@@ -53,6 +55,11 @@ export default function reducer(state=initialState, action) {
       return {
         ...state,
         errorMessage: action.data
+      }
+    case CREATE_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        user: data
       }
     default:
       return {

@@ -10,17 +10,19 @@ import {
 import {
  BODY_BACKGROUND,
  DARK_GREY,
- DARK_BLUE 
+ DARK_BLUE,
+ LIGHT_GREY
 } from '../constants';
 
 export default function Button(props) {
   return(
     <TouchableOpacity
-      style={[styles.container, props.style]}
+      disabled={props.disabled}
+      style={props.disabled ? [styles.container, props.style, {backgroundColor: LIGHT_GREY}] : [styles.container, props.style]}
       onPress={props.onPress}
     >
       <View>
-        <Text style={[styles.textStyle, props.textStyle]}>{props.children}</Text>
+        <Text style={props.disabled ? styles.textStyle : [styles.textStyle, props.textStyle]}>{props.children}</Text>
       </View>
     </TouchableOpacity>
   )

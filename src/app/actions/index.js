@@ -17,12 +17,9 @@ const PP_BASE_URL = Config.PROPUBLICA_API_URL;
 const GOOGLE_KEY = Config.GOOGLE_CIVIC_INFORMATION_API_KEY;
 const GOOGLE_BASE_URL = Config.GOOGLE_CIVIC_INFORMATION_API_URL;
 
-function handleErrors(res) {
-  if (!res.ok) {
-    throw Error(res.statusText)
-  }
-  return res;
-}
+const API_BASE_URL = Config.API_BASE_URL;
+
+
 
 export function getPoliticians(address) {
   return dispatch =>
@@ -59,7 +56,46 @@ export function sendErrorMessage(message) {
 }
 
 export function createAccount(user, navigator) {
+  return dispatch => {
+    fetch(`${API_BASE_URL}/v1/users`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    })
+    .then((res) => {
+      return res.json()
+    })
+    .then((body) => {
+      if (body.errors) {
+        return dispatch(sendErrorMessage(body.errors))
+      }
+      return dispatch(createAccountSuccess(body, navigator))
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+}
+
+export function createAccountSuccess(body, navigator) {
+  navigator.push({
+    screen: 'reEngage.HomeScreen',
+    title: 'Your Politicians',
+    backButtonHidden: true,
+  })
+
   return {
+    type: CREATE_ACCOUNT_SUCCESS,
+    data: body
+  }
+}
+
+export function signIn(user, navigator) {
+  return {
+    
   }
 }
 
