@@ -25,6 +25,29 @@ const initialState = {
   zipCode: '',
 };
 
+async function setCache(name, item) {
+  item = JSON.stringify(item)
+  try {
+    //await AsyncStorage.setItem(name, item);
+    if (item) {
+      return AsyncStorage.setItem(name, item)
+    }
+    else {
+      console.log('not set, stringify failed:', name, item)
+    }
+  } catch (error) {
+    console.log(`error persisting ${name} to local storage`)
+  }
+}
+
+async function clearCache(key) {
+  try {
+    await AsyncStorage.removeItem(key)
+  } catch(error) {
+    console.log(`error removing ${key} from local storage`)
+  }
+}
+
 export default function reducer(state=initialState, action) {
   switch(action.type) {
     case GET_POLITICIANS_SUCCESS:
@@ -68,6 +91,11 @@ export default function reducer(state=initialState, action) {
       return {
         ...state,
         errorMessage: action.data
+      }
+    case CREATE_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        user: data
       }
     case SIGN_IN_SUCCESS:
       return {

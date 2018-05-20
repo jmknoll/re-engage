@@ -41,6 +41,14 @@ async function getCache (item) {
   }
 }
 
+getCache('user').then((user) => {
+  console.log('getting user from async storage and setting app as signedin')
+  state.app.user = JSON.parse(user)
+  state.app.signedIn = true;
+})
+
+
+
 Navigation.startSingleScreenApp({
   screen: {
     screen: 'reEngage.LandingScreen',

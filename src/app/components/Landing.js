@@ -23,6 +23,16 @@ export default class Landing extends Component {
     this._goToSignIn = this._goToSignIn.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.signedIn) {
+      this.props.navigator.push({
+        screen: 'reEngage.HomeScreen',
+        title: 'Your Politicians',
+        backButtonHidden: true,
+      })
+    }
+  }
+
   _goToOnboarding() {
     this.props.navigator.push({
       screen: 'reEngage.OnboardingScreen',

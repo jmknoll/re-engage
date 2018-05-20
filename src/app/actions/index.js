@@ -87,11 +87,24 @@ export function createAccount(user, navigator) {
       if (body.errors) {
         return dispatch(sendErrorMessage(body.errors))
       }
-      return dispatch(signInSuccess(body, navigator))
+      return dispatch(createAccountSuccess(body, navigator))
     })
     .catch((err) => {
       return dispatch(sendNetworkError())
     })
+  }
+}
+
+export function createAccountSuccess(body, navigator) {
+  navigator.push({
+    screen: 'reEngage.HomeScreen',
+    title: 'Your Politicians',
+    backButtonHidden: true,
+  })
+
+  return {
+    type: CREATE_ACCOUNT_SUCCESS,
+    data: body
   }
 }
 
