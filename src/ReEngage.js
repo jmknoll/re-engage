@@ -41,12 +41,14 @@ async function getCache (item) {
   }
 }
 
+const state = store.getState();
+
 getCache('user').then((user) => {
   console.log('getting user from async storage and setting app as signedin')
   state.app.user = JSON.parse(user)
   state.app.signedIn = true;
+  console.log(state)
 })
-
 
 
 Navigation.startSingleScreenApp({

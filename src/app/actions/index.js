@@ -9,6 +9,7 @@ import {
   SHOW_NETWORK_ERROR,
   CLEAR_NETWORK_ERROR,
   SIGN_IN_SUCCESS,
+  SIGN_OUT_SUCCESS
 } from './actionTypes';
 
 import Config from 'react-native-config';
@@ -143,6 +144,15 @@ export function signInSuccess(body, navigator) {
   return {
     type: SIGN_IN_SUCCESS,
     data: body
+  }
+}
+
+export function signOut(navigator) {
+  navigator.resetTo({
+    screen: 'reEngage.LandingScreen'
+  })
+  return {
+    type: SIGN_OUT_SUCCESS
   }
 }
 
