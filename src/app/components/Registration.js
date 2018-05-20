@@ -67,7 +67,7 @@ export default class Onboarding extends Component {
         photo_url: this.state.photoUrl
       }
     }
-    this.props.createAccount(data, this.props.navigator)
+    this.props.signUp(data, this.props.navigator)
   }
 
   // photo functions - should be refactored
