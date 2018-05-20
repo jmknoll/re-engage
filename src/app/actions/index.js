@@ -6,6 +6,8 @@ import {
   SEND_ERROR_MESSAGE,
   CREATE_ACCOUNT_SUCCESS,
   CREATE_ACCOUNT_FAILURE,
+  SHOW_NETWORK_ERROR,
+  CLEAR_NETWORK_ERROR
 } from './actionTypes';
 
 import Config from 'react-native-config';
@@ -55,6 +57,18 @@ export function sendErrorMessage(message) {
   }
 }
 
+export function sendNetworkError() {
+  return {
+    type: SHOW_NETWORK_ERROR
+  }
+}
+
+export function clearNetworkError() {
+  return {
+    type: CLEAR_NETWORK_ERROR
+  }
+}
+
 export function createAccount(user, navigator) {
   return dispatch => {
     fetch(`${API_BASE_URL}/v1/users`, {
@@ -75,7 +89,7 @@ export function createAccount(user, navigator) {
       return dispatch(createAccountSuccess(body, navigator))
     })
     .catch((err) => {
-      console.log(err)
+      return dispatch(sendNetworkError())
     })
   }
 }

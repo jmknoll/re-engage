@@ -9,7 +9,9 @@ import {
   RESET_MESSAGE_STATE,
   SEND_ERROR_MESSAGE,
   CREATE_ACCOUNT_SUCCESS,
-  CREATE_ACCOUNT_FAILURE
+  CREATE_ACCOUNT_FAILURE,
+  SHOW_NETWORK_ERROR,
+  CLEAR_NETWORK_ERROR
 } from '../actions/actionTypes';
 
 import { AsyncStorage } from 'react-native';
@@ -50,6 +52,16 @@ export default function reducer(state=initialState, action) {
         resetPasswordSuccess: false,
         resetPasswordFailure: false,
         errorMessage: ''
+      }
+    case SHOW_NETWORK_ERROR:
+      return {
+        ...state,
+        showNetworkError: true
+      }
+    case CLEAR_NETWORK_ERROR:
+      return {
+        ...state,
+        showNetworkError: false
       }
     case SEND_ERROR_MESSAGE:
       return {
