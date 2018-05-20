@@ -11,7 +11,8 @@ import {
   CREATE_ACCOUNT_SUCCESS,
   CREATE_ACCOUNT_FAILURE,
   SHOW_NETWORK_ERROR,
-  CLEAR_NETWORK_ERROR
+  CLEAR_NETWORK_ERROR,
+  SIGN_IN_SUCCESS
 } from '../actions/actionTypes';
 
 import { AsyncStorage } from 'react-native';
@@ -68,7 +69,7 @@ export default function reducer(state=initialState, action) {
         ...state,
         errorMessage: action.data
       }
-    case CREATE_ACCOUNT_SUCCESS:
+    case SIGN_IN_SUCCESS:
       return {
         ...state,
         user: data

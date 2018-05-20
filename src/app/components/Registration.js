@@ -68,7 +68,6 @@ export default class Onboarding extends Component {
       }
     }
     this.props.createAccount(data, this.props.navigator)
-    //.catch((ex) => {Alert.alert('network connectivity.')});
   }
 
   // photo functions - should be refactored

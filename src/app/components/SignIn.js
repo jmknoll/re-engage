@@ -19,6 +19,7 @@ import {
 
 import Button from '../../shared/components/Button';
 import Card from '../../shared/components/Card';
+import Notification from '../../shared/components/Notification';
 
 export default class SignIn extends Component {
 
@@ -30,12 +31,11 @@ export default class SignIn extends Component {
       password: ''
     }
 
-    this.signIn = this.signIn.bind(this);
-    this.showForgotPasswordScreen = this.showForgotPasswordScreen.bind(this);
+    this._signIn = this._signIn.bind(this);
+    this._showForgotPasswordScreen = this._showForgotPasswordScreen.bind(this);
   }
 
-  signIn() {
-    return
+  _signIn() {
     
     let user = {
       email: this.state.email,
@@ -45,18 +45,11 @@ export default class SignIn extends Component {
 
     this.props.signIn(
       user, 
-      this.props.navigator, 
-      this.props.deviceId,
-      this.failureCallback
+      this.props.navigator
     )
   }
 
-
-  failureCallback() {
-    Alert.alert('Failure signing in')
-  }
-
-  showForgotPasswordScreen() {
+  _showForgotPasswordScreen() {
     this.props.navigator.showModal({
       screen: 'reEngage.ForgotPasswordScreen',
       title : 'Reset Password',
@@ -82,11 +75,12 @@ export default class SignIn extends Component {
             autoCorrect={false}
             secureTextEntry={true}
           />
+        {this.props.errorMessage ?  <Notification type='error' message={this.props.errorMessage} /> : null}
         </Card>
-        <TouchableOpacity onPress={this.showForgotPasswordScreen}>
+        <TouchableOpacity onPress={this._showForgotPasswordScreen}>
           <Text style={styles.link}>Forgot your password?</Text>
         </TouchableOpacity>
-        <Button style={{marginTop: 'auto', backgroundColor: LIGHT_BLUE}} textStyle={{color: 'white'}} onPress={this.signIn}>Sign In</Button>
+        <Button style={{marginTop: 'auto', backgroundColor: LIGHT_BLUE}} textStyle={{color: 'white'}} onPress={this._signIn}>Sign In</Button>
       </KeyboardAvoidingView>
     )
   }

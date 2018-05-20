@@ -4,7 +4,7 @@ import SignIn from '../components/SignIn';
 
 function mapStateToProps(state) {
   return {
-    
+    errorMessage: state.app.errorMessage    
   }
 }
 

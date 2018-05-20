@@ -7,7 +7,8 @@ import {
   CREATE_ACCOUNT_SUCCESS,
   CREATE_ACCOUNT_FAILURE,
   SHOW_NETWORK_ERROR,
-  CLEAR_NETWORK_ERROR
+  CLEAR_NETWORK_ERROR,
+  SIGN_IN_SUCCESS,
 } from './actionTypes';
 
 import Config from 'react-native-config';
@@ -86,7 +87,7 @@ export function createAccount(user, navigator) {
       if (body.errors) {
         return dispatch(sendErrorMessage(body.errors))
       }
-      return dispatch(createAccountSuccess(body, navigator))
+      return dispatch(signInSuccess(body, navigator))
     })
     .catch((err) => {
       return dispatch(sendNetworkError())
@@ -94,22 +95,41 @@ export function createAccount(user, navigator) {
   }
 }
 
-export function createAccountSuccess(body, navigator) {
-  navigator.push({
-    screen: 'reEngage.HomeScreen',
-    title: 'Your Politicians',
-    backButtonHidden: true,
-  })
-
-  return {
-    type: CREATE_ACCOUNT_SUCCESS,
-    data: body
+export function signIn(user, navigator) {
+  return dispatch => {
+    fetch(`${API_BASE_URL}/v1/sessions`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    })
+    .then((res) => {
+      return res.json()
+    })
+    .then((body) => {
+      if (body.errors) {
+        return dispatch(sendErrorMessage(body.errors))
+      }
+      return dispatch(signInSuccess(body, navigator))
+    })
+    .catch((err) => {
+      return dispatch(sendNetworkError())
+    })
   }
 }
 
-export function signIn(user, navigator) {
+export function signInSuccess(body, navigator) {
+  navigator.push({
+    screen: 'reEngage.HomeScreen',
+    title: 'Your Politicians',
+    backButtonHidden: true
+  })
+
   return {
-    
+    type: SIGN_IN_SUCCESS,
+    data: body
   }
 }
 
