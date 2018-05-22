@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#0097CF",
+      "flex": 1,
+      "justifyContent": "space-around",
+      "paddingLeft": 15,
+      "paddingRight": 15,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 40,
+        "textAlign": "center",
+      }
+    }
+  >
+    Re-Engage
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 22,
+        "textAlign": "center",
+      }
+    }
+  >
+    Simplify the political engagement process in order to make your voice heard
+  </Text>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#EDF3F3",
+          "borderRadius": 4,
+          "height": 60,
+          "justifyContent": "center",
+          "marginBottom": 6,
+          "marginTop": 6,
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#253439",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Get Started
+        </Text>
+      </View>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 16,
+            "marginTop": 20,
+            "textAlign": "center",
+            "textDecorationLine": "underline",
+          }
+        }
+      >
+        Already have an account? Sign in.
+      </Text>
+    </View>
+  </View>
+</View>
+`;

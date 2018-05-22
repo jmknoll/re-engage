@@ -8,23 +8,25 @@
   },
   "dependencies": {
     "enzyme": "^3.3.0",
+    "fetch-mock": "^6.4.2",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-native": "0.55.3",
+    "react-native-aws3": "0.0.8",
     "react-native-config": "^0.11.5",
+    "react-native-image-picker": "^0.26.7",
     "react-native-navigation": "^1.1.450",
     "react-native-snap-carousel": "^3.7.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.2.0",
-    "react-native-aws3": "0.0.8",
-    "react-native-image-picker": "^0.26.7"
+    "redux-mock-store": "^1.5.1",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "babel-jest": "22.4.3",
+    "babel-jest": "^22.4.4",
     "babel-preset-react-native": "4.0.0",
-    "jest": "22.4.3",
-    "react-test-renderer": "16.3.1"
+    "jest": "^22.4.4",
+    "react-test-renderer": "^16.3.2"
   },
   "jest": {
     "preset": "react-native"
