@@ -8,7 +8,7 @@ import {
   RESET_PASSWORD_FAILURE,
   RESET_MESSAGE_STATE,
   SEND_ERROR_MESSAGE,
-  CREATE_ACCOUNT_SUCCESS,
+  SIGN_UP_SUCCESS,
   CREATE_ACCOUNT_FAILURE,
   SHOW_NETWORK_ERROR,
   CLEAR_NETWORK_ERROR,
@@ -19,11 +19,8 @@ import {
 import { AsyncStorage } from 'react-native';
 
 const initialState = {
-  user: {
-
-  },
+  user: {},
   signedIn: false,
-  zipCode: '',
 };
 
 async function setCache(name, item) {
@@ -92,12 +89,13 @@ export default function reducer(state=initialState, action) {
         ...state,
         errorMessage: action.data
       }
-    case CREATE_ACCOUNT_SUCCESS:
+    case SIGN_UP_SUCCESS:
       user = action.data;
       setCache('user', user)
       return {
         ...state,
-        user
+        user,
+        signedIn: true
       }
     case SIGN_IN_SUCCESS:
       user = action.data;

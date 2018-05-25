@@ -13,11 +13,16 @@ const mockStore = configureMockStore(middlewares);
 import Config from 'react-native-config';
 const API_BASE_URL = Config.API_BASE_URL;
 
-const mockUser = {
+const mockUserResponse = {
   "id": 16,
   "email": "test.user@gmail.com",
   "photo_url": "http://www.mockphotourl.com",
   "token": "abunchof.gibberish.inthistoken"
+}
+
+const mockUserRequest = {
+  email: 'test@test.com',
+  password: 'testing'
 }
 
 describe('async actions for auth', () => {
@@ -28,12 +33,22 @@ describe('async actions for auth', () => {
 
 
   it('should create CREATE_ACCOUNT_SUCCESS after sign up', () => {
-    fetchMock.mock(`${API_BASE_URL}/v1/users`, mockUser)
     return
+    fetchMock.mock(`${API_BASE_URL}/v1/users`, mockUserResponse)
+
+    const expectedActions = [
+      { type: types.CREATE_ACCOUNT_SUCCESS, data: mockUserResponse }
+    ];
+
+    const store = mockStore({ user: {} })
+
+    return store.dispatch(authActions.signUp(mockUserRequest)).then( () => {
+      expect(store.getActions()).toEqual(expectedActions)
+    })
   })
 
   it('should create SIGN_IN_SUCCESS after sign in', () => {
-    fetchMock.mock(`${API_BASE_URL}/v1/sessions`, mockUser)
+    fetchMock.mock(`${API_BASE_URL}/v1/sessions`, mockUserResponse)
     return
   })
 })
